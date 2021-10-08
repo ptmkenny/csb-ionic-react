@@ -1,0 +1,37 @@
+env:
+  browser: true
+  es2020: true
+extends:
+  - 'eslint:recommended'
+  - 'airbnb'
+  - 'airbnb-typescript'
+  - 'plugin:react/recommended'
+  - 'plugin:react-hooks/recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+  - 'plugin:@typescript-eslint/recommended'
+ignorePatterns: [ "*.js" ] # locales includes js that must be ignored.
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 2020
+  project: './tsconfig.json'
+  sourceType: module
+plugins:
+  - 'react'
+  - 'react-hooks'
+  - '@typescript-eslint'
+root: true # Necessary to avoid core config files being picked up.
+rules:
+  react/jsx-props-no-spreading:
+    - 'warn'
+    # Allow react-hook-form to use spreading.
+    - exceptions: ['IonDatetime', 'IonInput', 'IonSelect']
+  react/jsx-one-expression-per-line: 'off'
+  # https://stackoverflow.com/a/63798664/1209486
+  no-unused-vars: 'off'
+  '@typescript-eslint/no-unused-vars': ['warn']
+  no-use-before-define: 'off'
+  '@typescript-eslint/no-use-before-define': ['error']
+  'jsx-a11y/media-has-caption': ['warn']
+  '@typescript-eslint/ban-ts-comment': ['off'] # Todo: Turn back on when better at TypeScript.
